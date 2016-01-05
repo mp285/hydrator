@@ -1,8 +1,17 @@
-let React = require('react');
+var React = require('react');
+var Header = require('./Header.react');
+var Footer = require('./Footer.react');
+var MainSection = require('./MainSection.react');
 
 class HydratorApp extends React.Component {
   render() {
-    return <h1>Hello World!</h1>
+    return (
+      <div>
+        <Header />
+        <MainSection />
+        <Footer />
+      </div>
+    );
   }
 }
 
