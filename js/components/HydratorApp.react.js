@@ -1,7 +1,8 @@
 var React = require('react');
-var Header = require('./Header.react');
-var Footer = require('./Footer.react');
-var MainSection = require('./MainSection.react');
+
+import { Header } from './Header.react';
+import { Footer } from './Footer.react';
+import { MainSection } from './MainSection.react';
 
 class HydratorApp extends React.Component {
   render() {

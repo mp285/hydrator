@@ -8,3 +8,5 @@ class MainSection extends React.Component {
     );
   }
 }
+
+export { MainSection };
