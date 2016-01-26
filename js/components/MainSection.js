@@ -1,6 +1,6 @@
-var React = require('react');
+import React, { Component } from 'react'
 
-class MainSection extends React.Component {
+export default class MainSection extends Component {
   render() {
     return (
       <section id="main">
@@ -8,5 +8,3 @@ class MainSection extends React.Component {
     );
   }
 }
-
-export { MainSection };

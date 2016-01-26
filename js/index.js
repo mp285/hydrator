@@ -6,13 +6,14 @@ import { Provider } from 'react-redux'
 
 import createStore from './store'
 import { addDataset } from './actions'
-import { HydratorApp } from './components/HydratorApp'
+
+import HydratorApp from './containers/HydratorApp'
 
 const store = createStore();
 
 let unsub = store.subscribe(() => 
   console.log(store.getState())
-);
+)
 
 render(
   <Provider store={store}>
@@ -24,4 +25,4 @@ render(
 store.dispatch(addDataset('test', 'example.com'));
 store.dispatch(addDataset('testing', 'example.org'));
 
-unsub();
+unsub()

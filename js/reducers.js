@@ -1,14 +1,13 @@
 import { combineReducers } from 'redux'
-import { ADD_DATASET } from '../constants'
+import { ADD_DATASET } from './actions'
 
 const initialState = {
   datasets: []
 }
 
-function hydrateApp(state = initialState, action) {
+function datasets(state = initialState, action) {
   switch (action.type) {
     case ADD_DATASET:
-      console.log("adding dataset")
       return Object.assign({}, state, {
         datasets: [
           ...state.datasets,
@@ -23,8 +22,8 @@ function hydrateApp(state = initialState, action) {
   }
 }
 
-const rootReducer = combineReducers({
-  hydrateApp 
+const hydratorApp = combineReducers({
+  datasets
 })
 
-export default rootReducer
+export default hydratorApp

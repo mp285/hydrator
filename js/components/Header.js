@@ -1,6 +1,6 @@
-var React = require('react');
+import React, { Component } from 'react'
 
-class Header extends React.Component {
+export default class Header extends Component {
   render() {
     return (
       <header>
@@ -9,5 +9,3 @@ class Header extends React.Component {
     );
   }
 }
-
-export { Header };
