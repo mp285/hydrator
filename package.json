@@ -4,8 +4,9 @@
   "description": "Turn Twitter identifiers into JSON",
   "repository": "https://github/com/hydrator",
   "scripts": {
-    "build:lib": "babel js --out-dir lib",
-    "build:umd": "webpack --config webpack.prod.config.js js/index.js",
+    "clean": "rimraf lib static",
+    "build:lib": "babel src --out-dir lib",
+    "build:umd": "webpack --config webpack.prod.config.js src/index.js",
     "build": "npm run build:lib && npm run build:umd",
     "start": "node server.js",
     "lint": "eslint src"
@@ -20,6 +21,7 @@
     "babel-preset-stage-0": "^6.0.15",
     "eslint-plugin-react": "^3.6.2",
     "react-hot-loader": "^1.3.0",
+    "rimraf": "^2.5.1",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.1"
   },
