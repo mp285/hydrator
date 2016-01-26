@@ -8,6 +8,7 @@ const initialState = {
 function datasets(state = initialState, action) {
   switch (action.type) {
     case ADD_DATASET:
+      console.log("adding", state)
       return Object.assign({}, state, {
         datasets: [
           ...state.datasets,
