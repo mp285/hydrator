@@ -1,9 +1,11 @@
 export const ADD_DATASET = 'ADD_DATASET'
 
+let nextDatasetId = 0
+
 export function addDataset(title, url) {
   return {
     type: ADD_DATASET,
-    title: title,
-    url: url
+    id: nextDatasetId++,
+    title: title
   }
 }

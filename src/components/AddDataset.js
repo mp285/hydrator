@@ -4,8 +4,7 @@ export default class AddDataset extends Component {
   render() {
     return (
       <div>
-        <input type="text" ref="input" />
-        <button onClick={e => this.handleClick(e)}>Add</button>
+        <input name="datasetPath" type="file" ref="input" onChange={e => this.handleClick(e)} />
       </div>
     )
   }
@@ -18,6 +17,6 @@ export default class AddDataset extends Component {
   }
 }
 
-//AddDataset.propTypes = {
-//  onAddClick: PropTypes.func.isRequired
-//}
+AddDataset.propTypes = {
+  onAddClick: PropTypes.func.isRequired
+}

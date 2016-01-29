@@ -4,19 +4,19 @@ import { connect } from 'react-redux'
 import { addDataset } from '../actions'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import MainSection from '../components/MainSection'
+import DatasetList from '../components/DatasetList'
 import AddDataset from '../components/AddDataset'
 
 class HydratorApp extends Component {
   render() {
-    const { dispatch } = this.props
+    const { dispatch, datasets } = this.props
     return (
       <div>
         <Header />
-        <MainSection />
         <AddDataset onAddClick={text =>
           dispatch(addDataset(text))
         } />
+        <DatasetList datasets={datasets} />
         <Footer />
       </div>
     );
@@ -24,7 +24,9 @@ class HydratorApp extends Component {
 }
 
 function select(state) {
-  return {}
+  return {
+    datasets: state.datasets
+  }
 }
 
 export default connect(select)(HydratorApp)

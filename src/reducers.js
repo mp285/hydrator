@@ -1,23 +1,26 @@
 import { combineReducers } from 'redux'
 import { ADD_DATASET } from './actions'
 
-const initialState = {
-  datasets: []
+function dataset(state, action) {
+  switch (action.type) {
+    case ADD_DATASET:
+      return {
+        id: action.id,
+        title: action.title,
+      }
+    default:
+      return state
+  }
 }
 
-function datasets(state = initialState, action) {
+function datasets(state = [], action) {
   switch (action.type) {
     case ADD_DATASET:
       console.log("adding", state)
-      return Object.assign({}, state, {
-        datasets: [
-          ...state.datasets,
-          {
-            title: action.title,
-            url: action.url,
-          }
-        ]
-      });
+      return [
+          ...state,
+          dataset(undefined, action)
+      ]
     default:
       return state;
   }
