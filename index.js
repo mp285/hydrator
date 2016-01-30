@@ -9,12 +9,16 @@ app.on('window-all-closed', function() {
 
 app.on('ready', function() {
   mainWindow = new BrowserWindow({width: 800, height: 500});
-  //mainWindow.loadURL('file:///Users/ed/Projects/hydrator/index.html');
 
+  // by default Electron loads the static file
   var url = 'file://' + __dirname + '/index.html';
+
+  // when developing it can be useful for Electron to get the
+  // the latest code from the webpack-dev-server
   if (process.env.ENV == 'dev') {
     url = 'http://localhost:8080/';
   }
+
   mainWindow.loadURL(url);
 
   mainWindow.on('closed', function() {
