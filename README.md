@@ -2,10 +2,11 @@ Install:
 
     npm install
 
-Start a hot-swappable dev-server:
+Start a hot-swappable dev-server and a dev Electron app:
 
-    npm watch
+    npm run watch
+    npm run start
 
-Start the Electron app:
+Package up as an Electron desktop app:
 
-    npm start
+    npm run build
