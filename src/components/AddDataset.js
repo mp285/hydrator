@@ -1,20 +1,26 @@
 import React, { Component, PropTypes } from 'react'
 
+let remote = window.require('remote')
+
 export default class AddDataset extends Component {
+
   render() {
     return (
       <div>
-        <input name="datasetPath" type="file" ref="input" onChange={e => this.handleClick(e)} />
+        <button id="addDataset" onClick={e => this.addDataset(e)}>Add Dataset</button><br />
       </div>
     )
   }
 
-  handleClick(e) {
-    const node = this.refs.input
-    const text = node.value.trim()
-    this.props.onAddClick(text)
-    node.value = ''
+  addDataset(e) {
+    let dialog = remote.require('dialog')
+    dialog.showOpenDialog(filenames => {
+      for (let filename of filenames) {
+        this.props.onAddClick(filename)
+      }
+    })
   }
+
 }
 
 AddDataset.propTypes = {

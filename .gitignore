@@ -1,5 +1,4 @@
 node_modules
 lib
 *.log
-Hydrator*
 .DS_Store

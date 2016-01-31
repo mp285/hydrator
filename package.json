@@ -7,7 +7,7 @@
     "clean": "rimraf lib static",
     "build:lib": "babel src --out-dir lib",
     "build:umd": "webpack --config webpack.prod.config.js src/index.js",
-    "package": "electron-packager . Hydrator --platform=darwin --arch=x64 --overwrite",
+    "package": "electron-packager . Hydrator --platform=darwin --arch=x64 --overwrite --icon=./static/img/hydrator.icns",
     "build": "npm run build:lib && npm run build:umd && npm run package",
     "start": "ENV=dev Electron .",
 		"watch": "webpack-dev-server -d --config webpack.dev.config.js"

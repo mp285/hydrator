@@ -1,3 +1,5 @@
+'use strict';
+
 var app = require('app');
 var BrowserWindow = require('browser-window');
 
@@ -8,7 +10,7 @@ app.on('window-all-closed', function() {
 });
 
 app.on('ready', function() {
-  mainWindow = new BrowserWindow({width: 800, height: 500});
+  let mainWindow = new BrowserWindow({width: 400, height: 500});
 
   // by default Electron loads the static file
   var url = 'file://' + __dirname + '/index.html';
