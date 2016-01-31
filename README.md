@@ -2,15 +2,15 @@ Install:
 
     npm install
 
-Start a hot-swappable dev-server:
+Start a hot-swappable development server:
 
-    npm run watch
+    npm run devserver
 
-And start a dev Electron app:
+And start up the app:
 
     npm run start
 
-Or package the Electron desktop app:
+Or package it all up as a desktop app:
 
     npm run build
     open Hydrator-darwin-x64/Hydrator.app

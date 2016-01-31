@@ -10,7 +10,7 @@
     "package": "electron-packager . Hydrator --platform=darwin --arch=x64 --overwrite --icon=./static/img/hydrator.icns",
     "build": "npm run build:lib && npm run build:umd && npm run package",
     "start": "ENV=dev Electron .",
-		"watch": "webpack-dev-server -d --config webpack.dev.config.js"
+		"devserver": "webpack-dev-server -d --config webpack.dev.config.js"
   },
   "devDependencies": {
     "babel-cli": "^6.4.5",
