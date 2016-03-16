@@ -9,18 +9,9 @@ import HydratorApp from './containers/HydratorApp'
 
 const store = createStore();
 
-//let unsub = store.subscribe(() => 
-//  console.log(store.getState())
-//)
-
 render(
   <Provider store={store}>
     <HydratorApp />
   </Provider>,
   document.getElementById('app')
 );
-
-//store.dispatch(addDataset('test', 'example.com'));
-//store.dispatch(addDataset('testing', 'example.org'));
-
-//unsub()
