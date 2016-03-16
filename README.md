@@ -1,3 +1,6 @@
+This is (obviously) a work in progress. If you are interested in learning more
+please join us in https://docnowteam.slack.com
+
 Install:
 
     npm install
