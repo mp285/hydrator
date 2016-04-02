@@ -4,6 +4,7 @@ export default class Dataset extends Component {
   render() {
     return (
       <li key={this.props.id}>
+        <button>start</button>
         {this.props.title} [{this.props.id}]
       </li>
     );

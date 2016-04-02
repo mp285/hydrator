@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "8ecd42e85968360536b7"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "3dc2d1f5dd2f4c4bd556"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -554,7 +554,7 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	eval("'use strict';\n\nvar _react = __webpack_require__(2);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactDom = __webpack_require__(159);\n\nvar _reactRedux = __webpack_require__(160);\n\nvar _store = __webpack_require__(179);\n\nvar _store2 = _interopRequireDefault(_store);\n\nvar _actions = __webpack_require__(182);\n\nvar _HydratorApp = __webpack_require__(183);\n\nvar _HydratorApp2 = _interopRequireDefault(_HydratorApp);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar store = (0, _store2.default)();\n\nvar unsub = store.subscribe(function () {\n  return console.log(store.getState());\n});\n\n(0, _reactDom.render)(_react2.default.createElement(\n  _reactRedux.Provider,\n  { store: store },\n  _react2.default.createElement(_HydratorApp2.default, null)\n), document.getElementById('app'));\n\nstore.dispatch((0, _actions.addDataset)('test', 'example.com'));\nstore.dispatch((0, _actions.addDataset)('testing', 'example.org'));\n\nunsub();\n\n/*****************\n ** WEBPACK FOOTER\n ** ./src/index.js\n ** module id = 1\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./src/index.js?");
+	eval("'use strict';\n\nvar _react = __webpack_require__(2);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactDom = __webpack_require__(159);\n\nvar _reactRedux = __webpack_require__(160);\n\nvar _store = __webpack_require__(179);\n\nvar _store2 = _interopRequireDefault(_store);\n\nvar _actions = __webpack_require__(182);\n\nvar _HydratorApp = __webpack_require__(183);\n\nvar _HydratorApp2 = _interopRequireDefault(_HydratorApp);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar store = (0, _store2.default)();\n\n(0, _reactDom.render)(_react2.default.createElement(\n  _reactRedux.Provider,\n  { store: store },\n  _react2.default.createElement(_HydratorApp2.default, null)\n), document.getElementById('app'));\n\n/*****************\n ** WEBPACK FOOTER\n ** ./src/index.js\n ** module id = 1\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ },
 /* 2 */
@@ -1640,7 +1640,7 @@
 /* 182 */
 /***/ function(module, exports) {
 
-	eval("'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.addDataset = addDataset;\nvar ADD_DATASET = exports.ADD_DATASET = 'ADD_DATASET';\n\nvar nextDatasetId = 0;\n\nfunction addDataset(title, url) {\n  return {\n    type: ADD_DATASET,\n    id: nextDatasetId++,\n    title: title\n  };\n}\n\n/*****************\n ** WEBPACK FOOTER\n ** ./src/actions.js\n ** module id = 182\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./src/actions.js?");
+	eval("'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.addDataset = addDataset;\nexports.hydrateStarted = hydrateStarted;\nvar ADD_DATASET = exports.ADD_DATASET = 'ADD_DATASET';\nvar HYDRATE_STARTED = exports.HYDRATE_STARTED = 'HYDRATE_STARTED';\nvar HYDRATE_FAILURE = exports.HYDRATE_FAILURE = 'HYDRATE_FAILURE';\nvar HYDRATE_SUCCESS = exports.HYDRATE_SUCCESS = 'HYDRATE_SUCCESS';\n\nvar nextDatasetId = 0;\n\nfunction addDataset(title, url) {\n  return {\n    type: ADD_DATASET,\n    id: nextDatasetId++,\n    title: title\n  };\n}\n\nfunction hydrateStarted(dataset) {\n  return {\n    type: HYDRATE_STARTED,\n    dataset: dataset\n  };\n}\n\n/*****************\n ** WEBPACK FOOTER\n ** ./src/actions.js\n ** module id = 182\n ** module chunks = 0\n **/\n//# sourceURL=webpack:///./src/actions.js?");
 
 /***/ },
 /* 183 */
