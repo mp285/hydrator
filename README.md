@@ -1,5 +1,5 @@
 This is (obviously) a work in progress. If you are interested in learning more
-please join us in https://docnowteam.slack.com
+please join us in [Slack].
 
 Install:
 
@@ -7,13 +7,14 @@ Install:
 
 Start a hot-swappable development server:
 
-    npm run devserver
-
-And start up the app:
-
-    npm run start
+    npm run dev
 
 Or package it all up as a desktop app:
 
-    npm run build
-    open Hydrator-darwin-x64/Hydrator.app
+    npm run package 
+
+Hydrator was created using [electron-react-boilerplate] so check out that 
+documentation for more information about commands that are available.
+
+[Slack]: https://docnowteam.slack.com
+[electron-react-boilerplate]: https://github.com/chentsulin/electron-react-boilerplate
