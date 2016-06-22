@@ -1,16 +1,16 @@
+import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Counter from '../components/Counter';
-import * as CounterActions from '../actions/counter';
 
-function mapStateToProps(state) {
-  return {
-    counter: state.counter
-  };
+import AddDataset from '../components/AddDataset';
+
+
+export default class AddDatasetPage extends Component {
+  render() {
+    return (
+      <div>
+        <AddDataset />
+      </div>
+    );
+  }
 }
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(CounterActions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Counter);

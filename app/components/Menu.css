@@ -1,0 +1,25 @@
+.container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-color: black;
+  color: white;
+}
+
+.container a {
+  text-decoration: none;
+  color: white;
+}
+
+.container ul {
+  list-style: none;
+}
+
+.container li {
+  font-size: 1.8rem;
+}
+
+.container .active {
+  color: red;
+}

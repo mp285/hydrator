@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import Sidebar from '../components/Sidebar';
+import Menu from '../components/Menu';
 
 export default class App extends Component {
   static propTypes = {
@@ -10,7 +10,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <Sidebar location={this.props.location} />
+        <Menu />
         {this.props.children}
         {
           (() => {
