@@ -11,6 +11,7 @@ export default class App extends Component {
     return (
       <div>
         <Menu />
+        <div id="content">
         {this.props.children}
         {
           (() => {
@@ -20,6 +21,7 @@ export default class App extends Component {
             }
           })()
         }
+        </div>
       </div>
     );
   }

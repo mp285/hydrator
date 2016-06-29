@@ -3,7 +3,7 @@
   left: 0;
   top: 0;
   width: 100%;
-  background-color: black;
+  background-color: #444;
   color: white;
 }
 
@@ -14,12 +14,29 @@
 
 .container ul {
   list-style: none;
+  border: thin solid green;
+  line-height: 30px;
+  padding-left: 20px;
+  margin: 0px;
+  font-size: 12pt;
 }
 
 .container li {
-  font-size: 1.8rem;
+  display: inline;
+  margin-right: 40px;
+  font-weight: bold;
+}
+
+.container img {
+  height: 20px;
+  vertical-align: middle; 
+  margin-right: 10px;
 }
 
 .container .active {
-  color: red;
+  color: lightblue;
+}
+
+.container a:hover {
+  color: lightblue;
 }

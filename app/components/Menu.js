@@ -6,10 +6,14 @@ import styles from './Menu.css';
 export default class Menu extends Component {
   render() {
     return (
-      <ul className={styles.container}>
-        <li><Link className="navLink" to="/datasets" activeClassName={styles.active}>*</Link></li>
-        <li><Link className="navLink" to="/add" activeClassName={styles.active}>+</Link></li>
-      </ul>
+      <div className={styles.container}>
+        <ul>
+          <li className="logo"><img src="app.png" /></li>
+          <li><Link to="/datasets" activeClassName={styles.active}>Datasets</Link></li>
+          <li><Link to="/add" activeClassName={styles.active}>Add</Link></li>
+          <li>Settings</li>
+        </ul>
+      </div>
     );
   }
 }
