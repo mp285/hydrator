@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import React, { Component, PropTypes } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
-import AddDataset from '../components/AddDataset';
-import * as AddDatasetActions from '../actions/AddDataset.js';
+import AddDataset from '../components/AddDataset'
+import * as AddDatasetActions from '../actions/dataset'
 
 function mapStateToProps(state) {
   return {
@@ -11,19 +11,10 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(AddDatasetActions, dispatch);
+  return bindActionCreators(AddDatasetActions, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddDataset);
+console.log("hi")
+console.log(AddDatasetActions)
 
-/*
-export default class AddDatasetPage extends Component {
-  render() {
-    return (
-      <div>
-        <AddDataset />
-      </div>
-    );
-  }
-  }
-  */
+export default connect(mapStateToProps, mapDispatchToProps)(AddDataset)

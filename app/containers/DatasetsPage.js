@@ -1,12 +1,21 @@
-import React, { Component } from 'react';
-import Datasets from '../components/Datasets';
+import React, { Component } from 'react'
+import DatasetList from '../components/DatasetList'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 
-export default class DatasetsPage extends Component {
-  render() {
-    return (
-      <div>
-        <Datasets />
-      </div>
-    );
+import * as DatasetActions from '../actions/dataset'
+
+function mapStateToProps(state) {
+  return {
+    datasets: state.datasets
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(DatasetActions, dispatch)
+}
+
+let DecoratedDatasetList = withRouter(DatasetList)
+
+export default connect(mapStateToProps, mapDispatchToProps)(DecoratedDatasetList)
