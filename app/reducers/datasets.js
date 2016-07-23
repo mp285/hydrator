@@ -1,4 +1,4 @@
-import { ADD_DATASET } from '../actions/dataset';
+import { ADD_DATASET } from '../actions/dataset'
 
 export default function dataset(state = [], action) {
   switch (action.type) {
@@ -16,3 +16,4 @@ export default function dataset(state = [], action) {
       return state;
   }
 }
+

@@ -18,8 +18,8 @@ export default class AddDataset extends Component {
           <details open>
             <summary>Add a New Dataset</summary>
             <p>
-            Hydrate a new dataset by selecting a file of tweet identfiers
-            and entering some descriptive invormation about your new dataset.
+            <em>Hydrate</em> a new dataset by selecting a file of tweet identfiers
+            and entering some descriptive information about your new dataset.
             </p>
           </details>
           <form onSubmit={(e) => {

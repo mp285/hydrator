@@ -14,7 +14,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(AddDatasetActions, dispatch)
 }
 
-console.log("hi")
-console.log(AddDatasetActions)
-
 export default connect(mapStateToProps, mapDispatchToProps)(AddDataset)

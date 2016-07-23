@@ -5,6 +5,7 @@
   width: 100%;
   background-color: #444;
   color: white;
+  -webkit-app-region: drag;
 }
 
 .container a {

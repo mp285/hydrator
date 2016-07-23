@@ -6,6 +6,7 @@ import { hashHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
 import rootReducer from '../reducers';
 import DevTools from '../containers/DevTools';
+import { electronEnhancer } from 'redux-electron-store';
 
 const logger = createLogger({
   level: 'info',
@@ -17,11 +18,14 @@ const router = routerMiddleware(hashHistory);
 const enhancer = compose(
   applyMiddleware(thunk, router, logger),
   DevTools.instrument(),
+  electronEnhancer(),
+  /*
   persistState(
     window.location.href.match(
       /[?&]debug_session=([^&]+)\b/
     )
   )
+  */
 );
 
 export default function configureStore(initialState) {
