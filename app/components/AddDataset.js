@@ -1,6 +1,9 @@
-import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
-import styles from './AddDataset.css';
+import React, { Component, PropTypes } from 'react'
+import { Link } from 'react-router'
+import styles from './AddDataset.css'
+
+const {dialog} = require('electron').remote
+
 
 export default class AddDataset extends Component {
 
@@ -10,7 +13,7 @@ export default class AddDataset extends Component {
 
   render() {
 
-    let title, creator, publisher, url
+    let path, title, creator, publisher, url
 
     return (
       <div>
@@ -24,9 +27,14 @@ export default class AddDataset extends Component {
           </details>
           <form onSubmit={(e) => {
             e.preventDefault()
-            this.props.addDataset(title.value, creator.value, publisher.value, url.value)
+            this.props.addDataset(path, title.value, creator.value, publisher.value, url.value)
+            this.props.router.push("/datasets") 
           }}> 
-            <input id="filename" name="filename" type="file" />
+            <button onClick={ (e) => {
+              let files = dialog.showOpenDialog()
+              path = files[0]
+            } }>Select Tweet ID file</button>
+            <br />
             <br />
             <br />
             <label for="title">Title:</label>

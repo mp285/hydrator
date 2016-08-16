@@ -6,7 +6,7 @@ export default class Dataset extends Component {
   render() {
     return (
       <item>
-        {this.props.id } / {this.props.title} / {this.props.creator}
+        {this.props.id } / {this.props.title} / {this.props.creator} / {this.props.path}
       </item>
     )
   }

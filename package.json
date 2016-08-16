@@ -108,7 +108,8 @@
     "redux": "^3.5.2",
     "redux-electron-store": "^0.3.11",
     "redux-thunk": "^2.1.0",
-    "source-map-support": "^0.4.0"
+    "source-map-support": "^0.4.0",
+    "twitter-pin-auth": "^0.1.2"
   },
   "devEngines": {
     "node": "4.x || 5.x || 6.x",

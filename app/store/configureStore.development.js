@@ -18,14 +18,7 @@ const router = routerMiddleware(hashHistory);
 const enhancer = compose(
   applyMiddleware(thunk, router, logger),
   DevTools.instrument(),
-  electronEnhancer(),
-  /*
-  persistState(
-    window.location.href.match(
-      /[?&]debug_session=([^&]+)\b/
-    )
-  )
-  */
+  electronEnhancer()
 );
 
 export default function configureStore(initialState) {

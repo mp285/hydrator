@@ -1,2 +1,10 @@
 .container {
 }
+
+.container input {
+  width: auto;
+}
+
+.container .keys {
+  overflow-wrap: break-word;
+}
