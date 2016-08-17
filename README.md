@@ -1,4 +1,4 @@
-Hydrator (will be) an [Electron] based desktop application to [hydrate] a
+Hydrator (will be) an [Electron] based desktop application for [hydrating] a
 Twitter ID dataset.  This is (obviously) a work in progress. If you are
 interested in learning more please join us in [Slack].
 
@@ -20,4 +20,4 @@ documentation for more information about commands that are available.
 [Electron]: http://electron.atom.io/
 [Slack]: https://docnowteam.slack.com
 [electron-react-boilerplate]: https://github.com/chentsulin/electron-react-boilerplate
-[hydrate]: https://medium.com/on-archivy/on-forgetting-e01a2b95272#.lrkof12q5
+[hydrating]: https://medium.com/on-archivy/on-forgetting-e01a2b95272#.lrkof12q5
