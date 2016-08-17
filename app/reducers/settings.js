@@ -6,13 +6,7 @@ import {
 } from '../actions/settings'
 
 
-let defaultState = {
-  username: null,
-  accessKey: null,
-  accessKeySecret: null,
-}
-
-export default function settings(state = defaultState, action) {
+export default function settings(state = {}, action) {
   switch (action.type) {
     case ADD_SETTINGS: {
       return {

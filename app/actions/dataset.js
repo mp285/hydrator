@@ -1,5 +1,5 @@
-export const ADD_DATASET = 'ADD_DATASET'
-export const CHOOSE_FILE = 'CHOOSE_FILE'
+export const ADD_DATASET = 'ADD_DATASET';
+export const CHOOSE_FILE = 'CHOOSE_FILE';
 
 export function addDataset(path, title, creator, publisher, url) {
   return {
@@ -12,8 +12,9 @@ export function addDataset(path, title, creator, publisher, url) {
   }
 }
 
-export function chooseFile() {
+export function chooseFile(path) {
   return {
-    type: CHOOSE_FILE
+    type: CHOOSE_FILE,
+    path: path
   }
 }

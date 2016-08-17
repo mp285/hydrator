@@ -48,13 +48,13 @@ export default class Settings extends Component {
           { form }
           <br />
           <br />
-          <label for="username">Username:</label>
+          <label htmlFor="username">Username:</label>
           <div>{ this.props.settings.username }</div>
           <br />
-          <label for="accessKey">Access Key:</label>
+          <label htmlFor="accessKey">Access Key:</label>
           <div className={styles.keys}>{ this.props.settings.twitterAccessKey }</div>
           <br />
-          <label for="accessKeySecret">Access Key Secret:</label>
+          <label htmlFor="accessKeySecret">Access Key Secret:</label>
           <div className={styles.keys}>{ this.props.settings.twitterAccessSecret }</div>
         </div>
       </div>

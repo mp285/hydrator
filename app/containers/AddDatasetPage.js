@@ -8,6 +8,7 @@ import * as AddDatasetActions from '../actions/dataset'
 
 function mapStateToProps(state) {
   return {
+    selectedFile: state.volatile.selectedFile
   }
 }
 

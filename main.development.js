@@ -42,7 +42,8 @@ app.on('ready', () => {
     mainWindow.on('closed', () => {
       console.log("saving state");
       let state = store.getState();
-      storage.set('state', store.getState(), (error) => {
+      state.volatile = {}
+      storage.set('state', state, (error) => {
         if (error) throw error;
         mainWindow = null;
       });
