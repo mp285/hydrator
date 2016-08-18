@@ -8,7 +8,11 @@ import * as AddDatasetActions from '../actions/dataset'
 
 function mapStateToProps(state) {
   return {
-    selectedFile: state.volatile.selectedFile
+    selectedFile: state.newDataset.selectedFile,
+    title: state.newDataset.title,
+    creator: state.newDataset.creator,
+    publisher: state.newDataset.publisher,
+    url: state.newDataset.url
   }
 }
 

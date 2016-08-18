@@ -9,12 +9,13 @@ export default class AddDataset extends Component {
 
   static propTypes = {
     chooseFile: PropTypes.func.isRequired,
-    addDataset: PropTypes.func.isRequired
+    addDataset: PropTypes.func.isRequired,
+    prepDataset: PropTypes.func.isRequired,
   }
 
   render() {
 
-    let path, title, creator, publisher, url
+    //let path, title, creator, publisher, url
 
     return (
       <div>
@@ -41,13 +42,13 @@ export default class AddDataset extends Component {
             <br />
             <br />
             <label htmlFor="title">Title:</label>
-            <input ref={node => title = node} id="title" name="title" type="text" required></input>
+            <input id="title" name="title" type="text" onChange={ this.props.prepDataset } value={ this.props.title } required></input>
             <label htmlFor="creator">Creator:</label>
-            <input ref={node => creator = node} id="creator" name="creator" type="text"></input>
+            <input id="creator" name="creator" type="text" onChange={ this.props.prepDataset } value={ this.props.creator }></input>
             <label htmlFor="publisher">Publisher:</label>
-            <input ref={node => publisher = node} id="publisher" name="publisher" type="text"></input>
+            <input id="publisher" name="publisher" type="text" onChange={ this.props.prepDataset } value={ this.props.publisher }></input>
             <label htmlFor="url">URL:</label>
-            <input ref={node => url = node} id="url" name="url" type="url"></input>
+            <input id="url" name="url" type="url" onChange={ this.props.prepDataset } value={ this.props.url }></input>
             <br />
             <br />
             <button>Add Dataset</button>
