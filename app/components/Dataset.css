@@ -1,0 +1,33 @@
+.container {
+  font-size: 12pt;
+}
+
+.container .title {
+  font-weight: bold;
+}
+
+.container .bar {
+  line-height: 20px;
+  width: 80%;
+  margin-right: 10px;
+  float: left;
+  border: thin solid #aaa;
+}
+
+.container .progress {
+  background-color: lightblue;
+}
+
+.container button {
+  font-size: 10pt; 
+  line-height: 10pt;
+  font-weight: bold;
+}
+
+.container .stop {
+  background-color: pink;
+}
+
+.container .start {
+  background-color: lightgreen;
+}

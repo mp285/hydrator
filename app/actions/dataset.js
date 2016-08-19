@@ -1,6 +1,8 @@
 export const ADD_DATASET = 'ADD_DATASET'
 export const CHOOSE_FILE = 'CHOOSE_FILE'
 export const PREP_DATASET = 'PREP_DATASET'
+export const START_HYDRATION = 'START_HYDRATION'
+export const STOP_HYDRATION = 'STOP_HYDRATION'
 
 export function addDataset(path, title, creator, publisher, url) {
   return {
@@ -28,5 +30,19 @@ export function prepDataset(event) {
     type: PREP_DATASET,
     name: name,
     value: value
+  }
+}
+
+export function startHydration(datasetId) {
+  return {
+    type: START_HYDRATION,
+    datasetId: datasetId
+  }
+}
+
+export function stopHydration(datasetId) {
+  return {
+    type: STOP_HYDRATION,
+    datasetId: datasetId
   }
 }

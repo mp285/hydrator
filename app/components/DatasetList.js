@@ -6,7 +6,9 @@ import styles from './DatasetList.css';
 export default class DatasetList extends Component {
 
   static propTypes = {
-    datasets: PropTypes.array.isRequired
+    datasets: PropTypes.array.isRequired,
+    startHydration: PropTypes.func.isRequired,
+    stopHydration: PropTypes.func.isRequired
   }
 
   componentWillMount() { 
@@ -19,11 +21,11 @@ export default class DatasetList extends Component {
      return (
       <div className={styles.container}>
         <p>
-        Below are tweet datasets that you have added 
+        Below are datasets that have been added:
         </p>
         <ul>
           {this.props.datasets.map(dataset => 
-            <li key={dataset.id}><Dataset {...dataset} /></li>
+            <li key={dataset.id}><Dataset {...dataset} startHydration={this.props.startHydration} stopHydration={this.props.stopHydration} /></li>
           )}
         </ul>
       </div>

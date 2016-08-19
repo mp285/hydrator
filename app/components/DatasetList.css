@@ -8,3 +8,13 @@
 .container a {
   font-size: 1.4rem;
 }
+
+.container ul {
+  list-style-type: none;
+  -webkit-padding-start: 0px;
+}
+
+.container li {
+  margin-top: 15px;
+  margin-left: 0px;
+}
