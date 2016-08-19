@@ -28,12 +28,17 @@ export default class Dataset extends Component {
   }
 
   render() {
+    if (this.props.hydrating) {
+      var button = <StopButton onClick={(e) => this.props.stopHydration(this.props.id)} />
+    } else {
+      var button = <StartButton onClick={(e) => this.props.startHydration(this.props.id)} />
+    }
     return (
       <item className={styles.container}>
         <span className={styles.title}>{this.props.title}</span>
         <br />
         <ProgressBar />
-        <StartButton onClick={(e) => this.props.startHydration(this.props.id)} />
+        {button}
       </item>
     )
   }
