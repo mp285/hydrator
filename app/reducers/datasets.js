@@ -13,6 +13,7 @@ function pickDataset(datasets, datasetId) {
 
 export default function dataset(state = [], action) {
   switch (action.type) {
+
     case ADD_DATASET:
       let id = state.length + 1
       return [
@@ -27,7 +28,9 @@ export default function dataset(state = [], action) {
           hydrating: false
         } 
       ] 
+
     case START_HYDRATION:
+      // push some of this logic into pickDataset instead of repeating
       var d = pickDataset(state, action.datasetId)
       d.dataset.hydrating = true
       return [
@@ -35,10 +38,10 @@ export default function dataset(state = [], action) {
         d.dataset,
         ...state.slice(d.pos + 1)
       ]
+
     case STOP_HYDRATION:
       var d = pickDataset(state, action.datasetId)
       d.dataset.hydrating = false
-      console.log(d)
       return [
         ...state.slice(0, d.pos),
         d.dataset,
@@ -46,5 +49,6 @@ export default function dataset(state = [], action) {
       ]
     default:
       return state;
+
   }
 }
