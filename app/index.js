@@ -10,6 +10,9 @@ import './app.global.css';
 const store = configureStore();
 const history = syncHistoryWithStore(hashHistory, store);
 
+import {hydrate} from './actions/dataset'
+store.dispatch(hydrate())
+
 render(
   <Provider store={store}>
     <Router history={history} routes={routes} />

@@ -14,9 +14,6 @@ export default class AddDataset extends Component {
   }
 
   render() {
-
-    //let path, title, creator, publisher, url
-
     return (
       <div>
         <div className={styles.container}>
@@ -34,8 +31,10 @@ export default class AddDataset extends Component {
           }}> 
             <button onClick={ (e) => {
               let files = dialog.showOpenDialog()
-              this.props.chooseFile(files[0])
-            } }>Select Tweet ID file</button>
+              if (files && files.length == 1) {
+                this.props.chooseFile(files[0])
+              }
+            }}>Select Tweet ID file</button>
             <br />
             <br />
             <div className={styles.selectedFile}>{ this.props.selectedFile }</div>

@@ -8,7 +8,7 @@
 
 .container .bar {
   line-height: 20px;
-  width: 80%;
+  width: 60%;
   margin-right: 10px;
   float: left;
   border: thin solid #aaa;
@@ -19,6 +19,7 @@
 }
 
 .container button {
+  margin-left: 10px;
   font-size: 10pt; 
   line-height: 10pt;
   font-weight: bold;
@@ -30,4 +31,8 @@
 
 .container .start {
   background-color: lightgreen;
+}
+
+.container .delete {
+  background-color: #eee;
 }

@@ -21,11 +21,15 @@ export default class DatasetList extends Component {
      return (
       <div className={styles.container}>
         <p>
-        Below are datasets that have been added:
+        These are datasets that have been hydrated or are in the process of being hydrated.
         </p>
         <ul>
           {this.props.datasets.map(dataset => 
-            <li key={dataset.id}><Dataset {...dataset} startHydration={this.props.startHydration} stopHydration={this.props.stopHydration} /></li>
+            <li key={dataset.id}><Dataset {...dataset} 
+              startHydration={this.props.startHydration}
+              deleteDataset={this.props.deleteDataset} 
+              stopHydration={this.props.stopHydration}
+              setOutputPath={this.props.setOutputPath} /></li>
           )}
         </ul>
       </div>

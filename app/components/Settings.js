@@ -7,7 +7,8 @@ export default class Settings extends Component {
 
   static propTypes = {
     getTwitterAuthUrl: PropTypes.func.isRequired,
-    getTwitterCredentials: PropTypes.func.isRequired
+    getTwitterCredentials: PropTypes.func.isRequired,
+    unsetTwitterAuthUrl: PropTypes.func.isRequired
   }
 
   render() {
@@ -15,7 +16,7 @@ export default class Settings extends Component {
     let pin = null
 
     if (this.props.settings.twitterAuthUrl) {
-       var form = 
+      var form = 
         <form onSubmit = {(e) => {
           e.preventDefault()
           this.props.getTwitterCredentials(pin.value)
@@ -23,6 +24,8 @@ export default class Settings extends Component {
           <input ref={node => pin = node} name="twitterPin" id="twitterPin" placeholder="PIN" maxLength="7" size="8" type="text" />
           &nbsp; &nbsp; &nbsp;
           <button>Submit PIN</button>
+          &nbsp; &nbsp; &nbsp;
+          <button>Reset</button>
         </form>
     } else {
       var form = 
@@ -41,8 +44,9 @@ export default class Settings extends Component {
             <summary>Settings</summary>
             <p>
             These are your settings that control who you connect
-            to the Twitter API as, and where to write your data to 
-            on your computer.
+            to the Twitter API as. You will be directed over to 
+            Twitter to grant your Hydrator application permission to 
+            use your account to retrieve Twitter data.
             </p>
           </details>
           { form }

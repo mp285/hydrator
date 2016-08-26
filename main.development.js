@@ -29,7 +29,8 @@ app.on('ready', () => {
       show: false,
       width: 500,
       height: 750,
-      frame: false
+      frame: false,
+      resizable: false
     });
 
     mainWindow.loadURL(`file://${__dirname}/app/app.html`);
@@ -40,8 +41,8 @@ app.on('ready', () => {
     });
 
     mainWindow.on('closed', () => {
-      console.log("saving state");
       let state = store.getState();
+      console.log("saving state", state)
       storage.set('state', state, (error) => {
         if (error) throw error;
         mainWindow = null;
