@@ -18,7 +18,7 @@ export default class DatasetList extends Component {
   }
 
   render() {
-     return (
+    return (
       <div className={styles.container}>
         <p>
         These are datasets that have been hydrated or are in the process of being hydrated.
@@ -29,7 +29,10 @@ export default class DatasetList extends Component {
               startHydration={this.props.startHydration}
               deleteDataset={this.props.deleteDataset} 
               stopHydration={this.props.stopHydration}
-              setOutputPath={this.props.setOutputPath} /></li>
+              setOutputPath={this.props.setOutputPath}
+              numTweetIds={dataset.numTweetIds} 
+              idsRead={dataset.idsRead}
+              tweetsHydrated={dataset.tweetsHydrated} /></li>
           )}
         </ul>
       </div>

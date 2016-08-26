@@ -12,7 +12,8 @@ function mapStateToProps(state) {
     title: state.newDataset.title,
     creator: state.newDataset.creator,
     publisher: state.newDataset.publisher,
-    url: state.newDataset.url
+    url: state.newDataset.url,
+    numTweetIds: state.newDataset.numTweetIds
   }
 }
 

@@ -10,8 +10,8 @@ import './app.global.css';
 const store = configureStore();
 const history = syncHistoryWithStore(hashHistory, store);
 
-import {hydrate} from './actions/dataset'
-store.dispatch(hydrate())
+import {heartbeat} from './actions/dataset'
+store.dispatch(heartbeat())
 
 render(
   <Provider store={store}>

@@ -16,11 +16,12 @@
 
 .container .progress {
   background-color: lightblue;
+  font-size: 9pt;
+  white-space: nowrap;
 }
 
 .container button {
   margin-left: 10px;
-  font-size: 10pt; 
   line-height: 10pt;
   font-weight: bold;
 }

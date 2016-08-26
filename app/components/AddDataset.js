@@ -9,6 +9,7 @@ export default class AddDataset extends Component {
 
   static propTypes = {
     chooseFile: PropTypes.func.isRequired,
+    checkFile: PropTypes.func.isRequired,
     addDataset: PropTypes.func.isRequired,
     prepDataset: PropTypes.func.isRequired,
   }
@@ -26,13 +27,14 @@ export default class AddDataset extends Component {
           </details>
           <form onSubmit={(e) => {
             e.preventDefault()
-            this.props.addDataset(this.props.selectedFile, title.value, creator.value, publisher.value, url.value)
+            this.props.addDataset(this.props.selectedFile, this.props.numTweetIds, title.value, creator.value, publisher.value, url.value)
             this.props.router.push("/datasets") 
           }}> 
             <button onClick={ (e) => {
               let files = dialog.showOpenDialog()
               if (files && files.length == 1) {
                 this.props.chooseFile(files[0])
+                this.props.checkFile(files[0])
               }
             }}>Select Tweet ID file</button>
             <br />
@@ -48,6 +50,8 @@ export default class AddDataset extends Component {
             <input id="publisher" name="publisher" type="text" onChange={ this.props.prepDataset } value={ this.props.publisher }></input>
             <label htmlFor="url">URL:</label>
             <input id="url" name="url" type="url" onChange={ this.props.prepDataset } value={ this.props.url }></input>
+            <label>Number of Tweet IDs:</label>
+            <div>{ this.props.numTweetIds }</div>
             <br />
             <br />
             <button>Add Dataset</button>

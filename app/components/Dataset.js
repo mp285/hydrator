@@ -5,12 +5,12 @@ import styles from './Dataset.css'
 const {dialog} = require('electron').remote
 
 var ProgressBar = (props) => {
-  let complete = Math.ceil(Math.random() * 100)
-  let remaining = 100 - complete 
-  let style = {width: remaining + "%"}
+  let complete = Math.ceil(props.idsRead / props.numTweetIds)
+  let style = {width: complete + "%"}
+  console.log(props)
   return(
     <div className={styles.bar}>
-      <div className={styles.progress} style={style}>&nbsp;</div>
+      <div className={styles.progress} style={style}><span>&nbsp;{props.idsRead}/{props.numTweetIds} ids read ({props.tweetsHydrated} hydrated)</span>{props.idsHydrated}</div>
     </div>
   )
 }
@@ -50,7 +50,10 @@ export default class Dataset extends Component {
       <item className={styles.container}>
         <span className={styles.title}>{this.props.title}</span>
         <br />
-        <ProgressBar />
+        <ProgressBar 
+          numTweetIds={this.props.numTweetIds} 
+          idsRead={this.props.idsRead} 
+          tweetsHydrated={this.props.tweetsHydrated} />
         {startStopButton}
         <button className={styles.delete} onClick={(e) => this.props.deleteDataset(this.props.id)}>Delete</button>
       </item>

@@ -35,7 +35,10 @@ export default function dataset(state = [], action) {
           creator: action.creator,
           publisher: action.publisher,
           url: action.url,
-          hydrating: false
+          hydrating: false,
+          numTweetIds: action.numTweetIds,
+          idsRead: 0,
+          tweetsHydrated: 0
         } 
       ] 
 
@@ -71,9 +74,10 @@ export default function dataset(state = [], action) {
       return reducedDatasets(state, d)
 
     case UPDATE_PROGRESS:
-      console.log(action)
       var d = pickDataset(state, action.datasetId)
-      return  state
+      d.dataset.idsRead += action.idsRead,
+      d.dataset.tweetsHydrated += action.tweetsHydrated
+      return reducedDatasets(state, d)
 
     default:
       return state;
