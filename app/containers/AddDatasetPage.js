@@ -13,7 +13,9 @@ function mapStateToProps(state) {
     creator: state.newDataset.creator,
     publisher: state.newDataset.publisher,
     url: state.newDataset.url,
-    numTweetIds: state.newDataset.numTweetIds
+    numTweetIds: state.newDataset.numTweetIds,
+    twitterAccessKey: state.settings.twitterAccessKey,
+    twitterAccessSecret: state.settings.twitterAccessSecret
   }
 }
 

@@ -5,13 +5,14 @@ import {
   SET_TWITTER_PIN, GET_TWITTER_CREDENTIALS, SET_TWITTER_CREDENTIALS
 } from '../actions/settings'
 
+import {SET_RESET_TIME} from '../actions/dataset'
+
 
 export default function settings(state = {}, action) {
   switch (action.type) {
     case ADD_SETTINGS: {
       return {
         ...state,
-        username: action.username,
         twitterAccessKey: state.twitterAccessKey,
         twitterAccessSecret: state.twitterAccessSecret
       }
@@ -36,6 +37,12 @@ export default function settings(state = {}, action) {
         twitterAuthUrl: null
       }
     }
+    case SET_RESET_TIME: {
+      return {
+        ...state,
+        resetTime: action.resetTime
+      }
+    } 
     default:
       return state
   }

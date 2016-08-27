@@ -18,11 +18,26 @@ export default class DatasetList extends Component {
   }
 
   render() {
+    var resetMessage = ""
+    if (this.props.resetTime) {
+      var d = new Date(0);
+      d.setUTCSeconds(this.props.resetTime)
+      resetMessage = 
+        <div className={styles.rateLimit}>
+          {"Rate limit exceeded: sleeping till " + d.toTimeString()}
+        </div> 
+    }
     return (
       <div className={styles.container}>
+        <details open>
+        <summary>Your Datasets</summary>
         <p>
-        These are datasets that have been hydrated or are in the process of being hydrated.
+        <em>Start</em> and <em>Stop</em> hydration as needed. 
+        Hydrator will manage your <em>Twitter API Rate Limits</em> for you.
+        When you exceed your quota you will see a notification near the bottom 
+        of the screen.
         </p>
+        </details>
         <ul>
           {this.props.datasets.map(dataset => 
             <li key={dataset.id}><Dataset {...dataset} 
@@ -32,9 +47,12 @@ export default class DatasetList extends Component {
               setOutputPath={this.props.setOutputPath}
               numTweetIds={dataset.numTweetIds} 
               idsRead={dataset.idsRead}
-              tweetsHydrated={dataset.tweetsHydrated} /></li>
+              tweetsHydrated={dataset.tweetsHydrated} 
+              completed={dataset.completed} /></li>
           )}
         </ul>
+        <br />
+        {resetMessage}
       </div>
     )
   }

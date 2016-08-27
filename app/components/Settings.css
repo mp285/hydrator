@@ -6,5 +6,6 @@
 }
 
 .container .keys {
-  overflow-wrap: break-word;
+  overflow-wrap: nowrap; 
+  font-size: smaller;
 }

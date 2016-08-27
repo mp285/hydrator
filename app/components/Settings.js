@@ -51,10 +51,6 @@ export default class Settings extends Component {
           </details>
           { form }
           <br />
-          <br />
-          <label htmlFor="username">Username:</label>
-          <div>{ this.props.settings.username }</div>
-          <br />
           <label htmlFor="accessKey">Access Key:</label>
           <div className={styles.keys}>{ this.props.settings.twitterAccessKey }</div>
           <br />

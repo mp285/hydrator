@@ -14,6 +14,12 @@ export default class AddDataset extends Component {
     prepDataset: PropTypes.func.isRequired,
   }
 
+  componentWillMount() { 
+   if (! this.props.twitterAccessKey) {
+      this.props.router.push("/settings") 
+    }
+  }
+
   render() {
     return (
       <div>
@@ -39,9 +45,6 @@ export default class AddDataset extends Component {
             }}>Select Tweet ID file</button>
             <br />
             <br />
-            <div className={styles.selectedFile}>{ this.props.selectedFile }</div>
-            <br />
-            <br />
             <label htmlFor="title">Title:</label>
             <input id="title" name="title" type="text" onChange={ this.props.prepDataset } value={ this.props.title } required></input>
             <label htmlFor="creator">Creator:</label>
@@ -52,6 +55,9 @@ export default class AddDataset extends Component {
             <input id="url" name="url" type="url" onChange={ this.props.prepDataset } value={ this.props.url }></input>
             <label>Number of Tweet IDs:</label>
             <div>{ this.props.numTweetIds }</div>
+            <br />
+            <label>Path:</label>
+            <div>{ this.props.selectedFile }</div>
             <br />
             <br />
             <button>Add Dataset</button>

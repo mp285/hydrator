@@ -25,9 +25,6 @@ export function hydrateTweets(inputPath, outputPath, auth, startLine=0, endLine=
     .then(function(tweetIds) {
       return fetchTweets(tweetIds, auth)
     })
-    .catch(function(err) {
-      console.log("fetch tweets error: " + err)
-    })
     .then(function(result) {
       return writeTweets(result.tweetIds, result.tweets, outputPath)
     })
@@ -67,7 +64,21 @@ function fetchTweets(tweetIds, auth) {
     function(resolve, reject) {
       return twitter.post('/statuses/lookup', {id: ids})
         .then(function(response) {
-          resolve({tweetIds, tweetIds, tweets: response.data})
+          var headers = response.resp.headers
+          if (headers['x-rate-limit-remaining'] < 1) {
+            var error = {
+              message: "Rate limit exceeded",
+              reset: headers['x-rate-limit-reset']
+            }
+            reject(error)
+          }
+          else if (response.data.errors) {
+            var error = response.data.errors[0]
+            error.reset = headers['x-rate-limit-reset']
+            reject(error)
+          } else {
+            resolve({tweetIds, tweetIds, tweets: response.data})
+          }
         })
         .catch(function(err) {
           reject(err)

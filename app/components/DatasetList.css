@@ -18,3 +18,8 @@
   margin-top: 15px;
   margin-left: 0px;
 }
+
+.container .rateLimit {
+  font-size: 12pt;  
+  color: red;
+}

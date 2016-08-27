@@ -20,6 +20,12 @@
   white-space: nowrap;
 }
 
+.container .complete {
+  background-color: lightgreen;
+  font-size: 9pt;
+  white-space: nowrap;
+}
+
 .container button {
   margin-left: 10px;
   line-height: 10pt;
@@ -35,5 +41,9 @@
 }
 
 .container .delete {
+  background-color: #eee;
+}
+
+.container .view {
   background-color: #eee;
 }

@@ -5,12 +5,15 @@ import styles from './Dataset.css'
 const {dialog} = require('electron').remote
 
 var ProgressBar = (props) => {
-  let complete = Math.ceil(props.idsRead / props.numTweetIds)
+  let complete = Math.ceil((props.idsRead / props.numTweetIds) * 100)
   let style = {width: complete + "%"}
-  console.log(props)
+  var barProgress = styles.progress
+  if (props.completed) {
+    barProgress = styles.complete
+  }
   return(
     <div className={styles.bar}>
-      <div className={styles.progress} style={style}><span>&nbsp;{props.idsRead}/{props.numTweetIds} ids read ({props.tweetsHydrated} hydrated)</span>{props.idsHydrated}</div>
+      <div className={barProgress} style={style}><span>&nbsp;{props.idsRead}/{props.numTweetIds} ids read ({props.tweetsHydrated} hydrated)</span>{props.idsHydrated}</div>
     </div>
   )
 }
@@ -23,6 +26,10 @@ var StopButton = (props) => {
   return <button onClick={props.onClick} className={styles.stop}>Stop</button>
 }
 
+var ViewButton = (props) => {
+  return <button className={styles.view}>View</button>
+}
+
 export default class Dataset extends Component {
   static propTypes = {
     startHydration: PropTypes.func.isRequired,
@@ -31,7 +38,9 @@ export default class Dataset extends Component {
   }
 
   render() {
-    if (this.props.hydrating) {
+    if (this.props.completed) {
+      var startStopButton = <ViewButton />
+    }  else if (this.props.hydrating) {
       var startStopButton = <StopButton onClick={(e) => this.props.stopHydration(this.props.id)} />
     } else {
       var startStopButton = <StartButton onClick={(e) => {
@@ -53,7 +62,8 @@ export default class Dataset extends Component {
         <ProgressBar 
           numTweetIds={this.props.numTweetIds} 
           idsRead={this.props.idsRead} 
-          tweetsHydrated={this.props.tweetsHydrated} />
+          tweetsHydrated={this.props.tweetsHydrated} 
+          completed={this.props.completed} />
         {startStopButton}
         <button className={styles.delete} onClick={(e) => this.props.deleteDataset(this.props.id)}>Delete</button>
       </item>

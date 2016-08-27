@@ -38,7 +38,8 @@ export default function dataset(state = [], action) {
           hydrating: false,
           numTweetIds: action.numTweetIds,
           idsRead: 0,
-          tweetsHydrated: 0
+          tweetsHydrated: 0,
+          completed: null
         } 
       ] 
 
@@ -59,7 +60,6 @@ export default function dataset(state = [], action) {
       if (! d.dataset.outputPath) {
         return state
       }
-      console.log("hydrating " + d.dataset.path + " to " + d.dataset.outputPath)
       d.dataset.hydrating = true
       return reducedDatasets(state, d)
 
@@ -77,6 +77,10 @@ export default function dataset(state = [], action) {
       var d = pickDataset(state, action.datasetId)
       d.dataset.idsRead += action.idsRead,
       d.dataset.tweetsHydrated += action.tweetsHydrated
+      if (d.dataset.idsRead >= d.dataset.numTweetIds) {
+        console.log("done!")
+        d.dataset.completed = new Date()
+      }
       return reducedDatasets(state, d)
 
     default:

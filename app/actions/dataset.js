@@ -1,5 +1,4 @@
 import {CONSK, CONSS} from './settings'
-import {hydrateTweets, checkTweetIdFile} from '../utils/twitter'
 
 export const ADD_DATASET = 'ADD_DATASET'
 export const DELETE_DATASET = 'DELETE_DATASET'
@@ -12,8 +11,9 @@ export const START_HYDRATION = 'START_HYDRATION'
 export const STOP_HYDRATION = 'STOP_HYDRATION'
 export const SET_OUTPUT_PATH = 'SET_OUTPUT_PATH'
 export const UPDATE_PROGRESS = 'UPDATE_PROGRESS'
+export const SET_RESET_TIME = 'SET_RESET_TIME'
 
-
+import {hydrateTweets, checkTweetIdFile} from '../utils/twitter'
 
 export function addDataset(path, numTweetIds, title, creator, publisher, url) {
   return {
@@ -102,36 +102,66 @@ export function setOutputPath(datasetId, path) {
 export function hydrate() {
   return function(dispatch, getState) {
     var state = getState()
-    var eligible = state.datasets.filter((d) => d.hydrating == true)
+    var eligible = state.datasets.filter((d) => d.hydrating == true && ! d.completed)
     if (eligible.length == 0) {
-      console.log("no datasets are hydrating")
       return
     }
     // TODO: randomly pick one?
     var dataset = eligible[0]
-    console.log("hydrating dataset:", dataset)
     var auth = {
       consumer_key: CONSK,
       consumer_secret: CONSS,
       access_token: state.settings.twitterAccessKey,
       access_token_secret: state.settings.twitterAccessSecret,
     }
-    hydrateTweets(dataset.path, dataset.outputPath, auth)
+    var startLine = dataset.idsRead
+    var endLine = startLine + 100
+    console.log("hydrating", dataset.path, startLine, endLine) 
+    hydrateTweets(dataset.path, dataset.outputPath, auth, startLine, endLine)
       .then(function(result) {
         dispatch(updateProgress(dataset.id, result.idsRead, result.tweetsHydrated))
       }).catch(function(err) {
         console.log(err)
+        dispatch(setResetTime(err.reset))
       })
   }
 }
 
 export function heartbeat() {
-  return dispatch => {
+  return (dispatch, getState) => {
+    var state = getState()
+
+    // handle sleeping the appropriate amount of time
+    var nextBeat = 1000
+    var resetTime = state.settings.resetTime
+    if (resetTime) {
+
+      // calculate number of milliseconds to wait till time is reset
+      let currentTime = new Date().getTime() / 1000 // seconds
+      nextBeat = (state.settings.resetTime - currentTime) * 1000 // milliseconds
+
+      let wakeUpTime = new Date(0)
+      wakeUpTime.setUTCSeconds(state.settings.resetTime)
+      console.log("rate limit exceeded, sleeping till " + wakeUpTime)
+
+      if (nextBeat <= 0) {
+        dispatch(setResetTime(null))
+        nextBeat = 1000
+      }
+    }
+
+    // sleep till we want to hydrate again
     setTimeout(() => {
-      console.log("heartbeat")
       dispatch(heartbeat())
       dispatch(hydrate())
-    }, 10000)
+    }, nextBeat)
+  }
+}
+
+export function setResetTime(t) {
+  return {
+    type: SET_RESET_TIME,
+    resetTime: t
   }
 }
 

@@ -8,7 +8,8 @@ import * as DatasetActions from '../actions/dataset'
 
 function mapStateToProps(state) {
   return {
-    datasets: state.datasets
+    datasets: state.datasets,
+    resetTime: state.settings.resetTime
   }
 }
 
