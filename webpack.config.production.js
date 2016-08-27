@@ -1,6 +1,19 @@
+import fs from 'fs';
 import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import baseConfig from './webpack.config.base';
+
+// twit's form-data has a browser.js that uses window & screws up
+// the electron app, since window is undefined 
+// maybe this will get fixed upstream in twit, but till then...
+
+try {
+  fs.unlinkSync('node_modules/twit/node_modules/form-data/lib/browser.js')
+} catch(e) {
+  console.log('no need to remove browser.js')
+}
+
+
 
 const config = {
   ...baseConfig,
