@@ -38,6 +38,7 @@ export default class DatasetList extends Component {
         of the screen.
         </p>
         </details>
+        {resetMessage}
         <ul>
           {this.props.datasets.map(dataset => 
             <li key={dataset.id}><Dataset {...dataset} 
@@ -52,7 +53,6 @@ export default class DatasetList extends Component {
           )}
         </ul>
         <br />
-        {resetMessage}
       </div>
     )
   }

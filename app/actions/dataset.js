@@ -131,30 +131,24 @@ export function heartbeat() {
   return (dispatch, getState) => {
     var state = getState()
 
-    // handle sleeping the appropriate amount of time
-    var nextBeat = 1000
-    var resetTime = state.settings.resetTime
+    var resetTime = state.settings.resetTime;
+    var okToHydrate = true
     if (resetTime) {
-
-      // calculate number of milliseconds to wait till time is reset
-      let currentTime = new Date().getTime() / 1000 // seconds
-      nextBeat = (state.settings.resetTime - currentTime) * 1000 // milliseconds
-
-      let wakeUpTime = new Date(0)
-      wakeUpTime.setUTCSeconds(state.settings.resetTime)
-      console.log("rate limit exceeded, sleeping till " + wakeUpTime)
-
-      if (nextBeat <= 0) {
+      var currentTime = new Date().getTime() / 1000 
+      if (state.settings.resetTime - currentTime > 0) {
+        okToHydrate = false
+      } else {
         dispatch(setResetTime(null))
-        nextBeat = 1000
       }
     }
 
     // sleep till we want to hydrate again
     setTimeout(() => {
       dispatch(heartbeat())
-      dispatch(hydrate())
-    }, nextBeat)
+      if (okToHydrate) {
+        dispatch(hydrate())
+      }
+    }, 1000)
   }
 }
 

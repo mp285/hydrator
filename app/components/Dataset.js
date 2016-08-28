@@ -13,7 +13,7 @@ var ProgressBar = (props) => {
   }
   return(
     <div className={styles.bar}>
-      <div className={barProgress} style={style}><span>&nbsp;{props.idsRead}/{props.numTweetIds} ids read ({props.tweetsHydrated} hydrated)</span>{props.idsHydrated}</div>
+      <div className={barProgress} style={style}><span>&nbsp;{props.idsRead} of {props.numTweetIds} ids read ({props.tweetsHydrated} hydrated)</span>{props.idsHydrated}</div>
     </div>
   )
 }
