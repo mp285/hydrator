@@ -28,10 +28,6 @@ var StopButton = (props) => {
   return <button onClick={props.onClick} className={styles.stop}>Stop</button>
 }
 
-var ViewButton = (props) => {
-  return <button className={styles.view}>View</button>
-}
-
 export default class Dataset extends Component {
   static propTypes = {
     startHydration: PropTypes.func.isRequired,
@@ -41,7 +37,7 @@ export default class Dataset extends Component {
 
   render() {
     if (this.props.completed) {
-      var startStopButton = <ViewButton />
+      var startStopButton = ""
     }  else if (this.props.hydrating) {
       var startStopButton = <StopButton onClick={(e) => this.props.stopHydration(this.props.id)} />
     } else {
