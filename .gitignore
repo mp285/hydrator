@@ -1,6 +1,7 @@
 # Logs
 logs
 *.log
+npm-debug.log*
 
 # Runtime data
 pids
@@ -34,3 +35,5 @@ dist
 release
 main.js
 main.js.map
+Hydrator.dmg
+Hydrator-darwin-x64/
