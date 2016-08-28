@@ -1,0 +1,8 @@
+{
+  "title": "Hydrator",
+  "icon": "app/app.icns",
+  "contents": [
+    { "x": 220, "y": 200, "type": "file", "path": "release/darwin-x64/Hydrator-darwin-x64/Hydrator.app" },
+    { "x": 448, "y": 200, "type": "link", "path": "/Applications" }
+  ]
+}

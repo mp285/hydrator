@@ -10,6 +10,7 @@
     "test-e2e": "cross-env NODE_ENV=test mocha --compilers js:babel-register --require ./test/setup.js --require co-mocha ./test/e2e.js",
     "lint": "eslint app test *.js",
     "hot-server": "node -r babel-register server.js",
+    "build-dmg": "appdmg dmg.json Hydrator.dmg",
     "build-main": "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.electron.js --progress --profile --colors",
     "build-renderer": "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.production.js --progress --profile --colors",
     "build": "npm run build-main && npm run build-renderer",
@@ -42,6 +43,7 @@
   ],
   "homepage": "https://github.com/docnow/hydrator#readme",
   "devDependencies": {
+    "appdmg": "^0.4.5",
     "asar": "^0.11.0",
     "babel-core": "^6.9.0",
     "babel-eslint": "^6.0.4",
