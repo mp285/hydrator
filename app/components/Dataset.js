@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import styles from './Dataset.css'
+import CommaNumber from './CommaNumber'
 
 const {dialog} = require('electron').remote
 
@@ -14,7 +15,7 @@ var ProgressBar = (props) => {
   return(
     <Link to={"/dataset/" + props.datasetId}>
     <div className={styles.bar}>
-      <div className={barProgress} style={style}><span>&nbsp;{props.idsRead} of {props.numTweetIds} ids read ({props.tweetsHydrated} hydrated)</span>{props.idsHydrated}</div>
+      <div className={barProgress} style={style}><span>&nbsp;<CommaNumber value={props.idsRead} /> of <CommaNumber value={props.numTweetIds} /> ids read (<CommaNumber value={props.tweetsHydrated} />)</span></div>
     </div>
     </Link>
   )

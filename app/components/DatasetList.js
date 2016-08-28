@@ -24,7 +24,7 @@ export default class DatasetList extends Component {
       d.setUTCSeconds(this.props.resetTime)
       resetMessage = 
         <div className={styles.rateLimit}>
-          {"Rate limit exceeded: sleeping till " + d.toTimeString()}
+          {"Rate limit exceeded till " + d.toTimeString()}
         </div> 
     }
     return (
