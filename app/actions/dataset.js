@@ -3,6 +3,7 @@ import {CONSK, CONSS} from './settings'
 export const ADD_DATASET = 'ADD_DATASET'
 export const DELETE_DATASET = 'DELETE_DATASET'
 export const CHOOSE_FILE = 'CHOOSE_FILE'
+export const UNCHOOSE_FILE = 'UNCHOOSE_FILE'
 export const CHECK_FILE = 'CHECK_FILE'
 export const SET_NUM_TWEET_IDS = 'SET_NUM_TWEET_IDS'
 export const SET_FILE_CHECK_ERROR = 'SET_FILE_CHECK_ERROR'
@@ -38,6 +39,12 @@ export function chooseFile(path) {
   return {
     type: CHOOSE_FILE,
     path: path
+  }
+}
+
+export function unchooseFile() {
+  return {
+    type: UNCHOOSE_FILE
   }
 }
 

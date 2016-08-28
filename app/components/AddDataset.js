@@ -4,6 +4,30 @@ import styles from './AddDataset.css'
 
 const {dialog} = require('electron').remote
 
+var FileStats = (props) => {
+  if (props.numTweetIds && props.selectedFile) {
+    return(
+      <div>
+        <br />
+        <label>Path:</label>
+        <div>{ props.selectedFile }</div>
+        <br />
+        <label>Number of Tweet IDs:</label>
+        <div>{ props.numTweetIds }</div>
+      </div>
+    )
+  } else if (props.selectedFile) {
+    return(
+      <div>
+        <br />
+        <div><em>Verifying { props.selectedFile } ... </em></div>
+      </div>
+    )
+  } else {
+    return <span></span>
+  }
+}
+
 
 export default class AddDataset extends Component {
 
@@ -37,6 +61,7 @@ export default class AddDataset extends Component {
             this.props.router.push("/datasets") 
           }}> 
             <button onClick={ (e) => {
+              this.props.unchooseFile()
               let files = dialog.showOpenDialog()
               if (files && files.length == 1) {
                 this.props.chooseFile(files[0])
@@ -44,6 +69,7 @@ export default class AddDataset extends Component {
               }
             }}>Select Tweet ID file</button>
             <br />
+            <FileStats numTweetIds={this.props.numTweetIds} selectedFile={this.props.selectedFile} />
             <br />
             <label htmlFor="title">Title:</label>
             <input id="title" name="title" type="text" onChange={ this.props.prepDataset } value={ this.props.title } required></input>
@@ -53,11 +79,6 @@ export default class AddDataset extends Component {
             <input id="publisher" name="publisher" type="text" onChange={ this.props.prepDataset } value={ this.props.publisher }></input>
             <label htmlFor="url">URL:</label>
             <input id="url" name="url" type="url" onChange={ this.props.prepDataset } value={ this.props.url }></input>
-            <label>Number of Tweet IDs:</label>
-            <div>{ this.props.numTweetIds }</div>
-            <br />
-            <label>Path:</label>
-            <div>{ this.props.selectedFile }</div>
             <br />
             <br />
             <button>Add Dataset</button>

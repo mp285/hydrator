@@ -1,4 +1,4 @@
-import { CHOOSE_FILE, SET_NUM_TWEET_IDS, SET_FILE_CHECK_ERROR, 
+import { CHOOSE_FILE, UNCHOOSE_FILE, SET_NUM_TWEET_IDS, SET_FILE_CHECK_ERROR, 
          ADD_DATASET, PREP_DATASET } from '../actions/dataset'
 
 let initialState = {
@@ -17,6 +17,14 @@ export default function newDataset(state = initialState, action) {
       return {
         ...state,
         selectedFile: action.path
+      }
+    }
+
+    case UNCHOOSE_FILE: {
+      return {
+        ...state,
+        selectedFile: null,
+        numTweetIds: null
       }
     }
 
