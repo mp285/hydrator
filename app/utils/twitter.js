@@ -35,13 +35,15 @@ function readTweetIds(inputPath, startLine, endLine) {
     function(resolve, reject) {
       var pos = 0
       var lines = []
-      var linereader = createInterface({input: createReadStream(inputPath)})
+      var input = createReadStream(inputPath)
+      var linereader = createInterface({input: input})
       linereader.on('line', function(line) {
         if (pos >= startLine && pos < endLine) {
           lines.push(line.toString())
         } 
         if (pos == endLine) {
           linereader.close()
+          input.close()
         }
         pos += 1
       })
