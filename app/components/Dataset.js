@@ -12,9 +12,11 @@ var ProgressBar = (props) => {
     barProgress = styles.complete
   }
   return(
+    <Link to={"/dataset/" + props.datasetId}>
     <div className={styles.bar}>
       <div className={barProgress} style={style}><span>&nbsp;{props.idsRead} of {props.numTweetIds} ids read ({props.tweetsHydrated} hydrated)</span>{props.idsHydrated}</div>
     </div>
+    </Link>
   )
 }
 
@@ -57,9 +59,10 @@ export default class Dataset extends Component {
     }
     return (
       <item className={styles.container}>
-        <span className={styles.title}>{this.props.title}</span>
+        <Link className={styles.title} to={"/dataset/" + this.props.id}>{this.props.title}</Link>
         <br />
-        <ProgressBar 
+        <ProgressBar
+          datasetId={this.props.id} 
           numTweetIds={this.props.numTweetIds} 
           idsRead={this.props.idsRead} 
           tweetsHydrated={this.props.tweetsHydrated} 

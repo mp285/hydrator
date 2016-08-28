@@ -2,6 +2,12 @@
   font-size: 12pt;
 }
 
+.container a {
+  font-size: 12pt;
+  text-decoration: none;
+  color: black;
+}
+
 .container .title {
   font-weight: bold;
 }

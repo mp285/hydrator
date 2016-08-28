@@ -27,10 +27,10 @@ export default function dataset(state = [], action) {
     case ADD_DATASET:
       let id = state.length + 1
       return [
-        ...state,
         {
           id: id,
           path: action.path,
+          outputPath: null,
           title: action.title,
           creator: action.creator,
           publisher: action.publisher,
@@ -40,7 +40,8 @@ export default function dataset(state = [], action) {
           idsRead: 0,
           tweetsHydrated: 0,
           completed: null
-        } 
+        },
+        ...state
       ] 
 
     case DELETE_DATASET:

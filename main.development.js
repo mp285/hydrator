@@ -29,7 +29,6 @@ app.on('ready', () => {
       show: false,
       width: 500,
       height: 750,
-      frame: false,
       resizable: false
     });
 

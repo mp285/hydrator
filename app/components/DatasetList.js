@@ -33,9 +33,8 @@ export default class DatasetList extends Component {
         <summary>Your Datasets</summary>
         <p>
         <em>Start</em> and <em>Stop</em> hydration as needed. 
-        Hydrator will manage your <em>Twitter API Rate Limits</em> for you.
-        When you exceed your quota you will see a notification near the bottom 
-        of the screen.
+        Hydrator will manage your <em>Twitter API Rate Limits</em> for you. 
+        Click on the dataset for details.
         </p>
         </details>
         {resetMessage}
