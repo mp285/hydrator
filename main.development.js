@@ -1,7 +1,6 @@
 import { app, BrowserWindow, Menu, shell, ipcMain } from 'electron';
 import storage from 'electron-json-storage';
 import configureStore from './app/store/configureStore';
-import { hydratorStartup } from  './app/actions/settings'
 
 let menu;
 let template;
@@ -20,11 +19,7 @@ app.on('ready', () => {
 
   storage.get('state', (err, data) => {
 
-    console.log("loaded state");
-    console.log(data);
-
     const store = configureStore(data);
-    store.dispatch(hydratorStartup())
 
     mainWindow = new BrowserWindow({
       show: false,
@@ -42,7 +37,6 @@ app.on('ready', () => {
 
     mainWindow.on('closed', () => {
       let state = store.getState();
-      console.log("saving state", state)
       storage.set('state', state, (error) => {
         if (error) throw error;
         mainWindow = null;
