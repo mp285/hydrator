@@ -9,6 +9,9 @@ export const UNSET_TWITTER_AUTH_URL = 'UNSET_TWITTER_AUTH_URL'
 export const SET_TWITTER_PIN = 'SET_TWITTER_PIN'
 export const GET_TWITTER_CREDENTIALS = 'GET_TWITTER_CREDENTIALS'
 export const SET_TWITTER_CREDENTIALS = 'SET_TWITTER_CREDENTIALS'
+export const HYDRATOR_STARTUP = 'HYDRATOR_STARTUP'
+export const HYDRATOR_SHUTDOWN = 'HYDRATOR_SHUTDOWN'
+
 export const CONSK = 'J2Rx3kNtBe1NwTOffGDRtiTnx'
 export const CONSS = 'guF3efhWLWrlHkMuOu7Ff4cZk1yhyfjdIjuRfjP0YKS4seRAiR'
 
@@ -63,5 +66,17 @@ export function setTwitterCredentials(credentials) {
     type: SET_TWITTER_CREDENTIALS,
     twitterAccessKey: credentials.accessTokenKey,
     twitterAccessSecret: credentials.accessTokenSecret
+  }
+}
+
+export function hydratorStartup() {
+  return {
+    type: HYDRATOR_STARTUP
+  }
+}
+
+export function hydratorShutdown() {
+  return {
+    type: HYDRATOR_SHUTDOWN
   }
 }

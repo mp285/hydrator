@@ -13,6 +13,8 @@ export const STOP_HYDRATION = 'STOP_HYDRATION'
 export const SET_OUTPUT_PATH = 'SET_OUTPUT_PATH'
 export const UPDATE_PROGRESS = 'UPDATE_PROGRESS'
 export const SET_RESET_TIME = 'SET_RESET_TIME'
+export const START_HYDRATION_REQUEST = 'START_HYDRATION_REQUEST'
+export const STOP_HYDRATION_REQUEST = 'STOP_HYDRATION_REQUEST'
 
 import {hydrateTweets, checkTweetIdFile} from '../utils/twitter'
 
@@ -106,14 +108,33 @@ export function setOutputPath(datasetId, path) {
   }
 }
 
+function startHydrationRequest() {
+  return {
+    type: START_HYDRATION_REQUEST
+  }
+}
+
+function stopHydrationRequest() {
+  return {
+    type: STOP_HYDRATION_REQUEST
+  }
+}
+
 export function hydrate() {
   return function(dispatch, getState) {
     var state = getState()
+
+    // only one hydration request at a time
+    if (state.hydrating) {
+      return
+    }
+
     var eligible = state.datasets.filter((d) => d.hydrating == true && ! d.completed)
     if (eligible.length == 0) {
       return
     }
-    // TODO: randomly pick one?
+
+    dispatch(startHydrationRequest())
     var dataset = eligible[0]
     var auth = {
       consumer_key: CONSK,
@@ -127,9 +148,11 @@ export function hydrate() {
     hydrateTweets(dataset.path, dataset.outputPath, auth, startLine, endLine)
       .then(function(result) {
         dispatch(updateProgress(dataset.id, result.idsRead, result.tweetsHydrated))
+        dispatch(stopHydrationRequest())
       }).catch(function(err) {
         console.log(err)
         dispatch(setResetTime(err.reset))
+        dispatch(stopHydrationRequest())
       })
   }
 }
@@ -149,7 +172,6 @@ export function heartbeat() {
       }
     }
 
-    // sleep till we want to hydrate again
     setTimeout(() => {
       dispatch(heartbeat())
       if (okToHydrate) {
