@@ -1,5 +1,5 @@
-import {START_HYDRATION_REQUEST, STOP_HYDRATION_REQUEST} from '../actions/dataset'
-import {HYDRATOR_STARTUP, HYDRATOR_SHUTDOWN} from '../actions/settings'
+import { START_HYDRATION_REQUEST, STOP_HYDRATION_REQUEST } from '../actions/dataset'
+import { HYDRATOR_STARTUP, HYDRATOR_SHUTDOWN, FACTORY_RESET } from '../actions/settings'
 
 export default function hydrating(state=false, action) {
 

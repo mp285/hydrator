@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 
 import Settings from '../components/Settings'
 import * as SettingsActions from '../actions/settings'
@@ -15,4 +16,6 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(SettingsActions, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Settings)
+let DecoratedSettings = withRouter(Settings)
+
+export default connect(mapStateToProps, mapDispatchToProps)(DecoratedSettings)

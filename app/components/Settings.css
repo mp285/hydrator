@@ -9,3 +9,7 @@
   overflow-wrap: nowrap; 
   font-size: smaller;
 }
+
+.container .reset {
+    color: red;
+}

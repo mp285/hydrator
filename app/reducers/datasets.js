@@ -2,6 +2,8 @@ import { ADD_DATASET, DELETE_DATASET, START_HYDRATION, STOP_HYDRATION,
          SET_OUTPUT_PATH, FETCH_TWEETS, UPDATE_PROGRESS } 
     from '../actions/dataset'
 
+import { FACTORY_RESET } from '../actions/settings'
+
 function pickDataset(datasets, datasetId) {
   let i = 0;
   for (var d of datasets) {
@@ -83,6 +85,9 @@ export default function dataset(state = [], action) {
         d.dataset.completed = new Date()
       }
       return reducedDatasets(state, d)
+
+    case FACTORY_RESET:
+      return []
 
     default:
       return state;

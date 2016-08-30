@@ -8,7 +8,21 @@ export default class Settings extends Component {
   static propTypes = {
     getTwitterAuthUrl: PropTypes.func.isRequired,
     getTwitterCredentials: PropTypes.func.isRequired,
-    unsetTwitterAuthUrl: PropTypes.func.isRequired
+    unsetTwitterAuthUrl: PropTypes.func.isRequired,
+    factoryReset: PropTypes.func.isRequired,
+    unsetSettingsReady: PropTypes.func.isRequired
+  }
+
+  componentWillReceiveProps() {
+    // if they've got their settings ready send them over to add a dataset
+    if (this.props.settings.ready) {
+      this.props.router.push("/add")
+      this.props.unsetSettingsReady()
+    }
+  }
+
+  reset() {
+    this.props.factoryReset()
   }
 
   render() {
@@ -56,6 +70,10 @@ export default class Settings extends Component {
           <br />
           <label htmlFor="accessKeySecret">Access Key Secret:</label>
           <div className={styles.keys}>{ this.props.settings.twitterAccessSecret }</div>
+          <br />
+          <br />
+          <br />
+          <button className={styles.reset} onClick={(e) => this.reset()}>Reset Settings</button>
         </div>
       </div>
     );

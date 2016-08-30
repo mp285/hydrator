@@ -11,7 +11,9 @@ export const GET_TWITTER_CREDENTIALS = 'GET_TWITTER_CREDENTIALS'
 export const SET_TWITTER_CREDENTIALS = 'SET_TWITTER_CREDENTIALS'
 export const HYDRATOR_STARTUP = 'HYDRATOR_STARTUP'
 export const HYDRATOR_SHUTDOWN = 'HYDRATOR_SHUTDOWN'
-
+export const FACTORY_RESET = 'FACTORY_RESET'
+export const SETTINGS_READY = 'SETTINGS_READY'
+export const UNSET_SETTINGS_READY = 'UNSET_SETTINGS_READY'
 export const CONSK = 'J2Rx3kNtBe1NwTOffGDRtiTnx'
 export const CONSS = 'guF3efhWLWrlHkMuOu7Ff4cZk1yhyfjdIjuRfjP0YKS4seRAiR'
 
@@ -23,6 +25,7 @@ export function getTwitterAuthUrl() {
       then(function(url) {
         remote.shell.openExternal(url)
         dispatch(setTwitterAuthUrl(url))
+        dispatch(settingsReady())
       }).catch(function(err){ 
         console.error(err)
       })
@@ -54,6 +57,7 @@ export function getTwitterCredentials(pin) {
     twitterPinAuth.authorize(pin)
       .then(function(credentials) {
         dispatch(setTwitterCredentials(credentials))
+
       }).catch(function(err) {
         console.error(err)
         dispatch(unsetTwitterAuthUrl())
@@ -80,3 +84,22 @@ export function hydratorShutdown() {
     type: HYDRATOR_SHUTDOWN
   }
 }
+
+export function factoryReset() {
+  return {
+    type: FACTORY_RESET
+  }
+}
+
+export function settingsReady() {
+  return {
+    type: SETTINGS_READY
+  }
+}
+
+export function unsetSettingsReady() {
+  return {
+    type: UNSET_SETTINGS_READY
+  }
+}
+
