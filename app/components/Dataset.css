@@ -38,18 +38,14 @@
   font-weight: bold;
 }
 
+.container button { 
+  background-color: #eee;
+}
+
 .container .stop {
   background-color: pink;
 }
 
 .container .start {
   background-color: lightgreen;
-}
-
-.container .delete {
-  background-color: #eee;
-}
-
-.container .view {
-  background-color: #eee;
 }

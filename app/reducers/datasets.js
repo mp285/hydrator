@@ -1,5 +1,6 @@
 import { ADD_DATASET, DELETE_DATASET, START_HYDRATION, STOP_HYDRATION, 
-         SET_OUTPUT_PATH, FETCH_TWEETS, UPDATE_PROGRESS } 
+         SET_OUTPUT_PATH, FETCH_TWEETS, UPDATE_PROGRESS, START_CSV_EXPORT,
+         STOP_CSV_EXPORT } 
     from '../actions/dataset'
 
 import { FACTORY_RESET } from '../actions/settings'
@@ -81,10 +82,30 @@ export default function dataset(state = [], action) {
       d.dataset.idsRead += action.idsRead,
       d.dataset.tweetsHydrated += action.tweetsHydrated
       if (d.dataset.idsRead >= d.dataset.numTweetIds) {
-        console.log("done!")
         d.dataset.completed = new Date()
       }
       return reducedDatasets(state, d)
+
+    case START_CSV_EXPORT: {
+      var d = pickDataset(state, action.datasetId)
+      if (d) {
+        d.dataset.csvExportStarted = true
+        d.dataset.csvPath = action.csvPath
+        return reducedDatasets(state, d)
+      } else {
+        return state
+      }
+    }
+
+    case STOP_CSV_EXPORT: {
+      var d = pickDataset(state, action.datasetId)
+      if (d) { 
+        d.dataset.csvExportStarted = false
+        return reducedDatasets(state, d)
+      } else {
+        return state
+      }
+    }
 
     case FACTORY_RESET:
       return []
@@ -93,4 +114,5 @@ export default function dataset(state = [], action) {
       return state;
 
   }
+
 }

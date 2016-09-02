@@ -1,12 +1,12 @@
 import fs from 'fs'
 import Twit from 'twit' 
-import {createReadStream} from 'fs'
 import {createInterface} from 'readline'
+import csvWriter from 'csv-write-stream'
 
 export function checkTweetIdFile(path) {
   return new Promise(
     function(resolve, reject) {
-      var linereader = createInterface({input: createReadStream(path)}) 
+      var linereader = createInterface({input: fs.createReadStream(path)}) 
       var count = 0
       linereader.on('line', function(line) {
         count += 1
@@ -35,7 +35,7 @@ function readTweetIds(inputPath, startLine, endLine) {
     function(resolve, reject) {
       var pos = 0
       var lines = []
-      var input = createReadStream(inputPath)
+      var input = fs.createReadStream(inputPath)
       var linereader = createInterface({input: input})
       linereader.on('line', function(line) {
         if (pos >= startLine && pos < endLine) {
@@ -105,3 +105,162 @@ function writeTweets(tweetIds, tweets, outputPath) {
   )
 }
 
+export function toCsv(jsonPath, csvPath) {
+  return new Promise(
+    function (resolve, reject) {
+      var input = fs.createReadStream(jsonPath)
+      var linereader = createInterface({input: input})
+
+      var csv = csvWriter({headers: [
+        'coordinates',
+        'created_at',
+        'hashtags',
+        'media',
+        'urls',
+        'favorite_count',
+        'id',
+        'in_reply_to_screen_name',
+        'in_reply_to_status_id',
+        'in_reply_to_user_id',
+        'lang',
+        'place',
+        'possibly_sensitive',
+        'retweet_count',
+        'reweet_id',
+        'retweet_screen_name',
+        'source',
+        'text',
+        'tweet_url',
+        'user_created_at',
+        'user_screen_name',
+        'user_default_profile_image',
+        'user_description',
+        'user_favourites_count',
+        'user_followers_count',
+        'user_friends_count',
+        'user_listed_count',
+        'user_location',
+        'user_name',
+        'user_screen_name',
+        'user_statuses_count',
+        'user_time_zone',
+        'user_urls',
+        'user_verified'
+      ]})
+      csv.pipe(fs.createWriteStream(csvPath))
+
+      var count = 0
+
+      linereader.on('line', function(line) {
+        count += 1
+        var tweet = JSON.parse(line)
+        csv.write(csvRow(tweet))
+      })
+
+      linereader.on('close', function() {
+        csv.end()
+        resolve(count)
+      })
+    }
+  )
+}
+
+function csvRow(t) {
+  var u = t.user
+  return [
+    coordinates(t),
+    t.created_at,
+    hashtags(t),
+    media(t),
+    urls(t),
+    t.favorite_count,
+    t.id_str,
+    t.in_reply_to_screen_name,
+    t.in_reply_to_status_id,
+    t.in_reply_to_user_id,
+    t.lang,
+    place(t),
+    t.possibly_sensitive,
+    t.retweet_count,
+    retweetId(t),
+    retweetScreenName(t),
+    t.source,
+    t.text,
+    tweetUrl(t),
+    u.created_at,
+    u.screen_name,
+    u.default_profile_image,
+    u.description,
+    u.favourites_count,
+    u.followers_count,
+    u.friends_count,
+    u.listed_count,
+    u.location,
+    u.name,
+    u.screen_name,
+    u.statuses_count,
+    u.time_zone,
+    userUrls(t),
+    u.verified
+  ]
+}
+
+function coordinates(t) {
+  if (t.coordinates) {
+    return t.coordinates.coordinates
+  }
+  return null
+}
+
+function hashtags(t) {
+  if (t.entities.hashtags) {
+    return t.entities.hashtags.map((ht) => ht.text).join(' ')
+  } 
+  return null
+}
+
+function media(t) {
+  if (t.entities.media) {
+    return t.entities.media.map((m) => m.expanded_url).join(' ')
+  } 
+  return null
+}
+
+function urls(t) {
+  if (t.entities.urls) {
+    return t.entities.urls.map((u) => u.expanded_url).join(' ')
+  }
+  return null
+}
+
+function place(t) {
+  if (t.place) {
+    return t.place.full_name
+  }
+  return null
+}
+
+function retweetId(t) {
+  if (t.retweeted_status) {
+    return t.retweeted_status.id_str
+  }
+  return null
+}
+
+function retweetScreenName(t) {
+  if (t.retweeted_status) {
+    return t.retweeted_status.user.screen_name
+  }
+  return null
+}
+
+function tweetUrl(t) {
+  return "https://twitter.com/" + t.user.screen_name + "/status/" + t.id_str
+}
+
+function userUrls(t) {
+  if (t.user && t.user.entities.url && t.user.entities.url.urls) {
+    return t.user.entities.url.urls.map((u) => u.expanded_url).join(' ')
+  }
+  return null
+}

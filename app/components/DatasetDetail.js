@@ -30,6 +30,16 @@ export default class DatasetDetail extends Component {
       "n/a"
     }
 
+    var csvPath = ""
+    if (d.csvPath) {
+      csvPath = 
+        <div>
+           <label>CSV File</label>
+           <div>{ d.csvPath }</div>
+           <br />
+        </div>
+    }
+
     return(  
       <div className={styles.container}>
         <label>Title:</label>
@@ -44,6 +54,7 @@ export default class DatasetDetail extends Component {
         <label>Hydrated JSON:</label>
         <div>{ d.outputPath }</div>
         <br />
+        { csvPath }
         <label>Total Tweet Ids:</label>
         <div><CommaNumber value={ d.numTweetIds } /></div>
         <br />

@@ -25,7 +25,7 @@ app.on('ready', () => {
       show: false,
       width: 500,
       height: 750,
-      resizable: false
+      resizable: process.env.NODE_ENV === 'development'
     });
 
     mainWindow.loadURL(`file://${__dirname}/app/app.html`);

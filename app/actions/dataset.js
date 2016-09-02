@@ -15,8 +15,10 @@ export const UPDATE_PROGRESS = 'UPDATE_PROGRESS'
 export const SET_RESET_TIME = 'SET_RESET_TIME'
 export const START_HYDRATION_REQUEST = 'START_HYDRATION_REQUEST'
 export const STOP_HYDRATION_REQUEST = 'STOP_HYDRATION_REQUEST'
+export const START_CSV_EXPORT = 'START_CSV_EXPORT'
+export const STOP_CSV_EXPORT = 'STOP_CSV_EXPORT'
 
-import {hydrateTweets, checkTweetIdFile} from '../utils/twitter'
+import {hydrateTweets, checkTweetIdFile, toCsv} from '../utils/twitter'
 
 export function addDataset(path, numTweetIds, title, creator, publisher, url) {
   return {
@@ -194,5 +196,38 @@ export function updateProgress(datasetId, idsRead, tweetsHydrated) {
     datasetId: datasetId,
     idsRead: idsRead,
     tweetsHydrated: tweetsHydrated
+  }
+}
+
+export function startCsvExport(datasetId, csvPath) {
+  return {
+    type: START_CSV_EXPORT,
+    datasetId: datasetId,
+    csvPath: csvPath 
+  }
+}
+
+export function stopCsvExport(datasetId) {
+  return {
+    type: STOP_CSV_EXPORT,
+    datasetId: datasetId
+  }
+}
+
+export function exportCsv(datasetId, csvPath) {
+  return function (dispatch, getState) {
+    var state = getState()
+    var dataset = state.datasets.find(d => d.id == datasetId)
+    if (dataset) {
+      dispatch(startCsvExport(datasetId, csvPath))
+      toCsv(dataset.outputPath, csvPath)
+        .then(function() {
+          dispatch(stopCsvExport(datasetId))
+        })
+        .catch(function(err) {
+          console.log("error", err)
+          dispatch(stopCsvExport(datasetId))
+        })
+    }
   }
 }

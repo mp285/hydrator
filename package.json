@@ -98,6 +98,7 @@
   },
   "dependencies": {
     "css-modules-require-hook": "^4.0.0",
+    "csv-write-stream": "^2.0.0",
     "electron-debug": "^1.0.0",
     "electron-json-storage": "^2.0.0",
     "font-awesome": "^4.6.3",

@@ -12,7 +12,7 @@ export default class DatasetList extends Component {
   }
 
   componentWillMount() { 
-   if (this.props.datasets.length == 0) {
+    if (this.props.datasets.length == 0) {
       this.props.router.push("/add") 
     }
   }
@@ -40,15 +40,19 @@ export default class DatasetList extends Component {
         {resetMessage}
         <ul>
           {this.props.datasets.map(dataset => 
-            <li key={dataset.id}><Dataset {...dataset} 
-              startHydration={this.props.startHydration}
-              deleteDataset={this.props.deleteDataset} 
-              stopHydration={this.props.stopHydration}
-              setOutputPath={this.props.setOutputPath}
-              numTweetIds={dataset.numTweetIds} 
-              idsRead={dataset.idsRead}
-              tweetsHydrated={dataset.tweetsHydrated} 
-              completed={dataset.completed} /></li>
+            <li key={dataset.id}>
+              <Dataset {...dataset} 
+                startHydration={this.props.startHydration}
+                deleteDataset={this.props.deleteDataset} 
+                stopHydration={this.props.stopHydration}
+                setOutputPath={this.props.setOutputPath}
+                exportCsv={this.props.exportCsv}
+                csvExportStarted={dataset.csvExportStarted}
+                numTweetIds={dataset.numTweetIds} 
+                idsRead={dataset.idsRead}
+                tweetsHydrated={dataset.tweetsHydrated}
+                completed={dataset.completed} />
+              </li>
           )}
         </ul>
         <br />
