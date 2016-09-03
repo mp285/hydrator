@@ -58,6 +58,9 @@ export default class DatasetDetail extends Component {
         <label>Total Tweet Ids:</label>
         <div><CommaNumber value={ d.numTweetIds } /></div>
         <br />
+        <label>Tweet Ids Read:</label>
+        <div><CommaNumber value={ d.idsRead } /></div>
+        <br />
         <label>Tweets Hydrated:</label>
         <div><CommaNumber value={ d.tweetsHydrated } /></div>
         <br />
