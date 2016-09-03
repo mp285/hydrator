@@ -30,7 +30,7 @@ var StopButton = (props) => {
 }
 
 var CsvButton = (props) => {
-  if (false) { //props.csvExportStarted) {
+  if (props.csvExportStarted) {
     return <button disabled className={styles.csv}>CSV</button>
   } else {
     return <button onClick={props.onClick} className={styles.csv}>CSV</button>
