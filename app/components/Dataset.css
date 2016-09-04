@@ -1,5 +1,6 @@
 .container {
   font-size: 12pt;
+  margin-bottom: 10px;
 }
 
 .container a {
@@ -10,10 +11,11 @@
 
 .container .title {
   font-weight: bold;
+  padding-bottom: 5px;
 }
 
 .container .bar {
-  line-height: 20px;
+  line-height: 23px;
   width: 60%;
   margin-right: 10px;
   float: left;
@@ -35,10 +37,8 @@
 .container button {
   margin-left: 10px;
   line-height: 10pt;
+  font-size: 9pt;
   font-weight: bold;
-}
-
-.container button { 
   background-color: #eee;
 }
 

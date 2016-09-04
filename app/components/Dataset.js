@@ -72,8 +72,7 @@ export default class Dataset extends Component {
     }
     return (
       <item className={styles.container}>
-        <Link className={styles.title} to={"/dataset/" + this.props.id}>{this.props.title}</Link>
-        <br />
+        <div className={styles.title} ><Link to={"/dataset/" + this.props.id}>{this.props.title}</Link></div>
         <ProgressBar
           datasetId={this.props.id} 
           numTweetIds={this.props.numTweetIds} 
