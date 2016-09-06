@@ -5,12 +5,13 @@ import { Router, hashHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import routes from './routes';
 import configureStore from './store/configureStore';
+import {heartbeat} from './actions/dataset'
 import './app.global.css';
 
 const store = configureStore();
 const history = syncHistoryWithStore(hashHistory, store);
 
-import {heartbeat} from './actions/dataset'
+// start the heartbeat
 store.dispatch(heartbeat())
 
 render(

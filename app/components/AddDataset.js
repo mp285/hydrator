@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import styles from './AddDataset.css'
+import CommaNumber from './CommaNumber'
 
 const {dialog} = require('electron').remote
 
@@ -13,7 +14,7 @@ var FileStats = (props) => {
         <div>{ props.selectedFile }</div>
         <br />
         <label>Number of Tweet IDs:</label>
-        <div>{ props.numTweetIds }</div>
+        <div><CommaNumber value={ props.numTweetIds } /></div>
       </div>
     )
   } else if (props.selectedFile) {

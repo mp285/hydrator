@@ -35,14 +35,12 @@ app.on('ready', () => {
       mainWindow.focus();
     });
 
-    mainWindow.on('closed', () => {
-      let state = store.getState();
+    ipcMain.on('autosave', (event, arg) => {
+      let state = store.getState()
       storage.set('state', state, (error) => {
-        if (error) throw error;
-        mainWindow = null;
-      });
-    });
-
+        if (error) throw error
+      })
+    })
 
     if (process.env.NODE_ENV === 'development') {
       mainWindow.openDevTools();
